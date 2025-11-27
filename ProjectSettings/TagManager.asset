@@ -17,10 +17,10 @@ TagManager:
   - Player
   - Enemy
   - Bullet
-  - 
-  - 
-  - 
-  - 
+  - Walls
+  - PACMAN
+  - Pellet
+  - Ghost
   - 
   - 
   - 
