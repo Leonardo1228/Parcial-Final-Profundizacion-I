@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8441352050382798989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6481493287519388611}
+  - component: {fileID: 2339217779443171270}
+  m_Layer: 0
+  m_Name: TetrisSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6481493287519388611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8441352050382798989}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2339217779443171270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8441352050382798989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1f24f1afa967e4d9265fa2c99fe5d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TetrisSpawner
+  tetrominoes:
+  - {fileID: 1791219534172995889, guid: acd9eb348a45199449f2374e3a38fa19, type: 3}
+  - {fileID: 4914627098221153805, guid: cb16970810589f742ae93cb35466acfa, type: 3}
+  - {fileID: 5488991639859787332, guid: 59e4bedf3b380be4f97423f46ff5a503, type: 3}
+  - {fileID: 5488176678647264425, guid: a05a401d21ca57d4eb7047f8a375fa5b, type: 3}
+  - {fileID: 6980949093508905621, guid: 3665d2f17aadcf34ab094b0baf239b07, type: 3}
+  - {fileID: 8027087088772192285, guid: f7c919782fb00454686f05c4a5fd63f3, type: 3}
+  - {fileID: 362063712754509227, guid: e702426a4b377ec41bf93e11ae7e76a0, type: 3}
