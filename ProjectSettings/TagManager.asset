@@ -14,9 +14,9 @@ TagManager:
   - Goal
   - Paddle
   - Ball
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Bullet
   - 
   - 
   - 
