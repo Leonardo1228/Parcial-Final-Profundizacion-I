@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManagerP : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManagerP Instance;
 
     public GameObject ballPrefab;
     public Text scoreText;

@@ -70,11 +70,11 @@ public class Ball : MonoBehaviour
     {
         if (name == "LeftGoal")
         {
-            GameManager.Instance.PlayerScoresPoint();
+            GameManagerP.Instance.PlayerScoresPoint();
         }
         else if (name == "RightGoal")
         {
-            GameManager.Instance.AIScoresPoint();
+            GameManagerP.Instance.AIScoresPoint();
         }
     }
 
