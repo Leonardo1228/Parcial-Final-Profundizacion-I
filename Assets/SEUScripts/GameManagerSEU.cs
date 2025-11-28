@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerSEU : MonoBehaviour
 {
@@ -7,14 +8,24 @@ public class GameManagerSEU : MonoBehaviour
     [Header("Player")]
     public int playerLives = 3;
 
-    [Header("Score")]
-    public int score = 0;
-
     [Header("Spawner")]
     public EnemySpawner spawner;
 
-    bool gameOver = false;
+    [Header("UI")]
+    public GameObject gameOverPanel;
+    public GameObject pausePanel;
 
+    [Header("Score")]
+    public int score = 0;
+
+    bool gameOver = false;
+    bool paused = false;
+
+    public void AddScore(int value)
+    {
+        score += value;
+        Debug.Log("Score: " + score);
+    }
     void Awake()
     {
         if (Instance == null)
@@ -25,21 +36,38 @@ public class GameManagerSEU : MonoBehaviour
 
     void Start()
     {
-        spawner.StartSpawning();
+        Time.timeScale = 1f;
+
+        // BLINDAJE ABSOLUTO
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(false);
+
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
+
+        gameOver = false;
+        paused = false;
+
+        if (spawner != null)
+            spawner.StartSpawning();
     }
 
-    public void AddScore(int value)
+    void Update()
     {
-        score += value;
-        Debug.Log("Score: " + score);
+        // PAUSA CON ENTER
+        if (!gameOver && Input.GetKeyDown(KeyCode.Return))
+        {
+            TogglePause();
+        }
     }
+
+    // ------------------ GAME OVER ------------------
 
     public void PlayerHit()
     {
         if (gameOver) return;
 
         playerLives--;
-        Debug.Log("Lives: " + playerLives);
 
         if (playerLives <= 0)
             GameOver();
@@ -48,8 +76,60 @@ public class GameManagerSEU : MonoBehaviour
     void GameOver()
     {
         gameOver = true;
-        spawner.StopSpawning();
-        Debug.Log("GAME OVER");
+
+        if (spawner != null)
+            spawner.StopSpawning();
+
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(true);
+
+        Time.timeScale = 0f;
+    }
+
+    // ------------------ PAUSA ------------------
+
+    public void TogglePause()
+    {
+        paused = !paused;
+
+        if (paused)
+        {
+            Time.timeScale = 0f;
+            if (pausePanel != null)
+                pausePanel.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            if (pausePanel != null)
+                pausePanel.SetActive(false);
+        }
+    }
+
+    public void ResumeGame()
+    {
+        paused = false;
+        Time.timeScale = 1f;
+
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
+    }
+
+    // ------------------ BOTONES ------------------
+
+    public void Retry()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 }
+
+
+
 

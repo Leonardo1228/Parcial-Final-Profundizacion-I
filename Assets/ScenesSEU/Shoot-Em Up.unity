@@ -211,11 +211,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1022858993 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5565358004092144463, guid: 0b69f7a57751f2140931e8ffc05f24f7, type: 3}
-  m_PrefabInstance: {fileID: 5831295215739901341}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1022858995 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8534799929196933246, guid: 0b69f7a57751f2140931e8ffc05f24f7, type: 3}
@@ -251,6 +246,50 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1022858995}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1710011379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1710011381}
+  - component: {fileID: 1710011380}
+  m_Layer: 0
+  m_Name: ScreenBounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1710011380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710011379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0980a58a05a29284b81dc721ce16098f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenBounds
+--- !u!4 &1710011381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710011379}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.05374, y: 1.56797, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &500747496782382756
 PrefabInstance:
@@ -429,7 +468,7 @@ PrefabInstance:
     - target: {fileID: 8870252436442042044, guid: 0b69f7a57751f2140931e8ffc05f24f7, type: 3}
       propertyPath: bulletPrefab
       value: 
-      objectReference: {fileID: 1022858993}
+      objectReference: {fileID: 5473082972260413979, guid: 3d5206902eac16645acb20a55e4281e2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -566,3 +605,4 @@ SceneRoots:
   - {fileID: 7896622166482485123}
   - {fileID: 3213524089700576469}
   - {fileID: 8531941189339569659}
+  - {fileID: 1710011381}

@@ -5,6 +5,18 @@ public class Enemy : MonoBehaviour
     public float speed = 2f;
     public int scoreValue = 10;
 
+    [Header("Shooting")]
+    public GameObject enemyBulletPrefab;
+    public float shootRate = 2f;
+
+    Transform player;
+
+    void Start()
+    {
+        player = FindObjectOfType<PlayerMovement>().transform;
+        InvokeRepeating(nameof(Shoot), 1f, shootRate);
+    }
+
     void Update()
     {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
@@ -13,9 +25,18 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
     }
 
+    void Shoot()
+    {
+        if (player == null || enemyBulletPrefab == null) return;
+
+        Vector3 dir = player.position - transform.position;
+
+        GameObject bullet = Instantiate(enemyBulletPrefab, transform.position, Quaternion.identity);
+        bullet.GetComponent<EnemyBullet>().SetDirection(dir);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Bala
         Bullet bullet = collision.GetComponent<Bullet>();
         if (bullet != null)
         {
@@ -24,9 +45,8 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        // Jugador
-        PlayerMovement player = collision.GetComponent<PlayerMovement>();
-        if (player != null)
+        PlayerMovement playerHit = collision.GetComponent<PlayerMovement>();
+        if (playerHit != null)
         {
             GameManagerSEU.Instance.PlayerHit();
             Die();
@@ -35,8 +55,22 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        CancelInvoke();
         GameManagerSEU.Instance.AddScore(scoreValue);
         Destroy(gameObject);
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+
+        if (player != null)
+        {
+            GameManagerSEU.Instance.PlayerHit();
+            Die();
+        }
+    }
+
 }
+
 

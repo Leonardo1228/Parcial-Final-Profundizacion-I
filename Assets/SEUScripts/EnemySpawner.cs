@@ -22,7 +22,15 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
+        Debug.Log("Spawn ejecutado por: " + gameObject.name);
+
         if (!spawning) return;
+
+        if (enemyPrefab == null)
+        {
+            Debug.LogError("enemyPrefab es NULL en: " + gameObject.name);
+            return;
+        }
 
         Vector3 pos = transform.position;
         pos.x += Random.Range(-range, range);
