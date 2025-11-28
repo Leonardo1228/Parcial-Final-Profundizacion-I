@@ -13,6 +13,9 @@ public class GameManagerP : MonoBehaviour
 
     private Ball currentBall; // Referencia a la bola actual
 
+    public GameObject retryButton;
+    public GameObject mainMenuButton;
+
     private void Awake()
     {
         Instance = this;
@@ -22,6 +25,9 @@ public class GameManagerP : MonoBehaviour
     {
         UpdateScoreText();
         SpawnBall();
+        retryButton.SetActive(false);
+        mainMenuButton.SetActive(false);
+
     }
 
     void SpawnBall()
@@ -63,13 +69,33 @@ public class GameManagerP : MonoBehaviour
         {
             scoreText.text = "¡GANASTE!";
             Time.timeScale = 0;
+
+            retryButton.SetActive(true);
+            mainMenuButton.SetActive(true);
         }
         else if (RightScores >= 5)
         {
             scoreText.text = "PERDISTE";
             Time.timeScale = 0;
+
+            retryButton.SetActive(true);
+            mainMenuButton.SetActive(true);
         }
     }
+
+    public void RetryGame()
+    {
+        Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
+
 }
 
 
