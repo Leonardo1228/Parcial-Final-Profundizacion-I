@@ -44,5 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f954a8233c9ae4b9463f4b1f9e1a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  ballPrefab: {fileID: 0}
+  ballPrefab: {fileID: 5953766912654592811, guid: 612e57997a91bcf418963727db778305, type: 3}
   scoreText: {fileID: 0}
+  retryButton: {fileID: 0}
+  mainMenuButton: {fileID: 0}
+  retryUIButton: {fileID: 0}

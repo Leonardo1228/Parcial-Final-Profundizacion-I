@@ -1,40 +1,75 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManagerP : MonoBehaviour
 {
     public static GameManagerP Instance;
 
+    [Header("Ball")]
     public GameObject ballPrefab;
-    public Text scoreText;
+    private Ball currentBall;
 
+    [Header("Score")]
+    public Text scoreText;
     private int RightScores = 0;
     private int LeftScores = 0;
 
-    private Ball currentBall; // Referencia a la bola actual
+    [Header("UI Panels")]
+    public GameObject gameOverPanel;
+    public GameObject pausePanel;
 
-    public GameObject retryButton;
-    public GameObject mainMenuButton;
+    private bool isPaused = false;
 
     private void Awake()
     {
         Instance = this;
+        Time.timeScale = 1f;
     }
 
     private void Start()
     {
         UpdateScoreText();
         SpawnBall();
-        retryButton.SetActive(false);
-        mainMenuButton.SetActive(false);
 
+        // Ocultar panels al inicio
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(false);
+
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
+    }
+
+    void Update()
+    {
+        // Tecla ENTER para pausar
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (!isPaused)
+                PauseGame();
+            else
+                ResumeGame();
+        }
     }
 
     void SpawnBall()
     {
+        if (currentBall != null)
+            return;
+
         GameObject ballObj = Instantiate(ballPrefab, Vector2.zero, Quaternion.identity);
         currentBall = ballObj.GetComponent<Ball>();
     }
+
+    void ResetCurrentBall()
+    {
+        if (currentBall != null)
+            currentBall.ResetBall();
+    }
+
+    // ==============================
+    // ✅ PUNTAJES
+    // ==============================
 
     public void AIScoresPoint()
     {
@@ -52,50 +87,72 @@ public class GameManagerP : MonoBehaviour
         ResetCurrentBall();
     }
 
-    void ResetCurrentBall()
-    {
-        if (currentBall != null)
-            currentBall.ResetBall();
-    }
-
     void UpdateScoreText()
     {
-        scoreText.text = LeftScores + " - " + RightScores;
+        if (scoreText != null)
+            scoreText.text = LeftScores + " - " + RightScores;
     }
 
     void CheckWinCondition()
     {
         if (LeftScores >= 5)
         {
-            scoreText.text = "�GANASTE!";
-            Time.timeScale = 0;
-
-            retryButton.SetActive(true);
-            mainMenuButton.SetActive(true);
+            ShowGameOver("¡GANASTE!");
         }
         else if (RightScores >= 5)
         {
-            scoreText.text = "PERDISTE";
-            Time.timeScale = 0;
-
-            retryButton.SetActive(true);
-            mainMenuButton.SetActive(true);
+            ShowGameOver("PERDISTE");
         }
     }
 
-    public void RetryGame()
+    void ShowGameOver(string message)
     {
-        Time.timeScale = 1;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(
-            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        if (scoreText != null)
+            scoreText.text = message;
+
+        Time.timeScale = 0f;
+
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(true);
+    }
+
+    // ==============================
+    // ✅ PAUSA
+    // ==============================
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        Time.timeScale = 0f;
+
+        if (pausePanel != null)
+            pausePanel.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
+    }
+
+    // ==============================
+    // ✅ BOTONES
+    // ==============================
+
+    public void Retry()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GoToMainMenu()
     {
-        Time.timeScale = 1;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
-
 }
 
 
