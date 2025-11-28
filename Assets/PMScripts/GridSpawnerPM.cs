@@ -18,9 +18,15 @@ public class GridSpawnerPM : MonoBehaviour
     public Pellet pelletPrefab;
     public List<Vector3Int> pelletSpawnCells;
 
-    PacController currentPlayer;
-    List<GhostAI> ghosts = new List<GhostAI>();
-    List<Pellet> pellets = new List<Pellet>();
+    private PacController currentPlayer;
+    private List<GhostAI> ghosts = new List<GhostAI>();
+    private List<Pellet> pellets = new List<Pellet>();
+
+    void Awake()
+    {
+        if (grid == null)
+            Debug.LogError("GridSpawnerPM: grid no asignado.");
+    }
 
     void Start()
     {
@@ -40,8 +46,13 @@ public class GridSpawnerPM : MonoBehaviour
         if (currentPlayer != null)
             Destroy(currentPlayer.gameObject);
 
-        Vector3 worldPos = grid.CellToWorld(playerSpawnCell);
+        if (playerPrefab == null)
+        {
+            Debug.LogError("GridSpawnerPM: playerPrefab no asignado.");
+            return;
+        }
 
+        Vector3 worldPos = grid.CellToWorld(playerSpawnCell);
         currentPlayer = Instantiate(playerPrefab, worldPos, Quaternion.identity);
         GameManagerPM.Instance.player = currentPlayer;
     }
@@ -50,6 +61,11 @@ public class GridSpawnerPM : MonoBehaviour
     void SpawnGhosts()
     {
         ClearGhosts();
+        if (ghostPrefab == null)
+        {
+            Debug.LogWarning("GridSpawnerPM: ghostPrefab no asignado.");
+            return;
+        }
 
         foreach (var cell in ghostSpawnCells)
         {
@@ -69,7 +85,6 @@ public class GridSpawnerPM : MonoBehaviour
     {
         foreach (var g in ghosts)
             if (g != null) Destroy(g.gameObject);
-
         ghosts.Clear();
     }
 
@@ -77,6 +92,11 @@ public class GridSpawnerPM : MonoBehaviour
     void SpawnPellets()
     {
         ClearPellets();
+        if (pelletPrefab == null)
+        {
+            Debug.LogWarning("GridSpawnerPM: pelletPrefab no asignado.");
+            return;
+        }
 
         foreach (var cell in pelletSpawnCells)
         {
@@ -90,8 +110,8 @@ public class GridSpawnerPM : MonoBehaviour
     {
         foreach (var p in pellets)
             if (p != null) Destroy(p.gameObject);
-
         pellets.Clear();
     }
 }
+
 
