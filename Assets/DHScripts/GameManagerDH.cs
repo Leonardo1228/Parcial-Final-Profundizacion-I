@@ -5,12 +5,21 @@ using TMPro;
 public class GameManagerDH : MonoBehaviour
 {
     public static GameManagerDH I;
+
+    [Header("Game State")]
     public int score;
     public int lives = 3;
-    public TMP_Text scoreText;
-    public TMP_Text livesText;
     public float roundTime = 30f;
     float timer;
+    bool roundActive;
+
+    [Header("References")]
+    public DuckSpawner duckSpawner;
+    public TMP_Text scoreText;
+    public TMP_Text livesText;
+    public TMP_Text roundText;
+
+    int roundNumber = 1;
 
     void Awake()
     {
@@ -20,17 +29,41 @@ public class GameManagerDH : MonoBehaviour
 
     void Start()
     {
-        timer = roundTime;
+        StartRound();
         UpdateUI();
     }
 
     void Update()
     {
+        if (!roundActive) return;
+
         timer -= Time.deltaTime;
         if (timer <= 0f)
         {
-            NextRound();
+            EndRound();
         }
+    }
+
+    void StartRound()
+    {
+        roundActive = true;
+        timer = roundTime;
+
+        if (roundText)
+            roundText.text = "RONDA " + roundNumber;
+
+        duckSpawner.StartSpawning();
+    }
+
+    void EndRound()
+    {
+        roundActive = false;
+        duckSpawner.StopSpawning();
+
+        roundNumber++;
+        duckSpawner.IncreaseDifficulty();
+
+        Invoke(nameof(StartRound), 2f); // pausa entre rondas
     }
 
     public void AddScore(int s)
@@ -41,12 +74,13 @@ public class GameManagerDH : MonoBehaviour
 
     public void LoseLife()
     {
+        if (!roundActive) return;
+
         lives--;
         UpdateUI();
+
         if (lives <= 0)
-        {
             GameOver();
-        }
     }
 
     void UpdateUI()
@@ -55,17 +89,18 @@ public class GameManagerDH : MonoBehaviour
         if (livesText) livesText.text = $"VIDAS: {lives}";
     }
 
-    void NextRound()
-    {
-        // simple: reset timer, can increase difficulty
-        timer = roundTime;
-        // Could signal Spawner to increase spawn rate
-        BroadcastMessage("OnNextRound", SendMessageOptions.DontRequireReceiver);
-    }
-
     void GameOver()
     {
-        // For prototype just reload scene
+        duckSpawner.StopSpawning();
+
+        if (roundText)
+            roundText.text = "GAME OVER";
+
+        Invoke(nameof(Reload), 3f);
+    }
+
+    void Reload()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

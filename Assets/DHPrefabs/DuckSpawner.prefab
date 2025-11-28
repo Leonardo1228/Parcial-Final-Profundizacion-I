@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DuckSpawner
   duckPrefab: {fileID: 2347820667154946476, guid: 379b19093d4b87145a5ce5168af4c2ad, type: 3}
   spawnInterval: 2
-  spawnTimer: 0
   minY: -1
   maxY: 3
   minSpeed: 1.5
