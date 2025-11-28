@@ -119,12 +119,18 @@ public class GameManagerSEU : MonoBehaviour
 
     public void Retry()
     {
+        if (spawner != null)
+            spawner.StopSpawning();
+
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoToMainMenu()
     {
+        if (spawner != null)
+            spawner.StopSpawning();
+
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
