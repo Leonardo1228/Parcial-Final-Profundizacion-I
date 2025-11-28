@@ -360,7 +360,7 @@ PrefabInstance:
     - target: {fileID: 6400444492982509418, guid: 705a79a98088cbb4e817a08b195dbc4c, type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 7089675559887241021, guid: 705a79a98088cbb4e817a08b195dbc4c, type: 3}
+      objectReference: {fileID: 3904476117662440541, guid: 237d7c859ac7f464a87255c2a24116ea, type: 3}
     - target: {fileID: 7089675559887241021, guid: 705a79a98088cbb4e817a08b195dbc4c, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
@@ -384,11 +384,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8534799929196933246, guid: 0b69f7a57751f2140931e8ffc05f24f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.46794
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8534799929196933246, guid: 0b69f7a57751f2140931e8ffc05f24f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.69774
+      value: -3.49
       objectReference: {fileID: 0}
     - target: {fileID: 8534799929196933246, guid: 0b69f7a57751f2140931e8ffc05f24f7, type: 3}
       propertyPath: m_LocalPosition.z
