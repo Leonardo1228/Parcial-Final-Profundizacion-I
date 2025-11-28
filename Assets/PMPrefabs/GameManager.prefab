@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8250648318389971958
+--- !u!1 &1477249119355718521
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8502550292136000810}
-  - component: {fileID: 4926019286955388503}
+  - component: {fileID: 6327425594305061561}
+  - component: {fileID: 6818463204795132806}
   m_Layer: 0
-  m_Name: DuckSpawner
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8502550292136000810
+--- !u!4 &6327425594305061561
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8250648318389971958}
+  m_GameObject: {fileID: 1477249119355718521}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.57413, y: 3.05303, z: 0}
+  m_LocalPosition: {x: -0.31319, y: -0.58077, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4926019286955388503
+--- !u!114 &6818463204795132806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8250648318389971958}
+  m_GameObject: {fileID: 1477249119355718521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3296de9d7705df748bf994f0b048307c, type: 3}
+  m_Script: {fileID: 11500000, guid: e8a7eaaa3d37251419fb7d339f33e544, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DuckSpawner
-  duckPrefab: {fileID: 2347820667154946476, guid: 379b19093d4b87145a5ce5168af4c2ad, type: 3}
-  spawnInterval: 2
-  spawnTimer: 0
-  minY: -1
-  maxY: 3
-  minSpeed: 1.5
-  maxSpeed: 3
-  screenEdgeOffset: 0.5
-  mainCam: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::GameManagerPM
+  score: 0
+  lives: 3
+  scoreText: {fileID: 0}
+  livesText: {fileID: 0}
+  player: {fileID: 3296329309632074788, guid: 01b9763030ac579499dbd853cb4470c4, type: 3}
+  gridSpawner: {fileID: 0}

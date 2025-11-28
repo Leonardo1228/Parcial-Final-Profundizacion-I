@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8250648318389971958
+--- !u!1 &2911147763540318566
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8502550292136000810}
-  - component: {fileID: 4926019286955388503}
+  - component: {fileID: 2307801053020571010}
+  - component: {fileID: 154875038912214605}
   m_Layer: 0
-  m_Name: DuckSpawner
+  m_Name: GridSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8502550292136000810
+--- !u!4 &2307801053020571010
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8250648318389971958}
+  m_GameObject: {fileID: 2911147763540318566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.57413, y: 3.05303, z: 0}
+  m_LocalPosition: {x: 1.43825, y: 0.10778, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4926019286955388503
+--- !u!114 &154875038912214605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8250648318389971958}
+  m_GameObject: {fileID: 2911147763540318566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3296de9d7705df748bf994f0b048307c, type: 3}
+  m_Script: {fileID: 11500000, guid: 665dcdeaf729e2a48b815c29a4df4e2a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DuckSpawner
-  duckPrefab: {fileID: 2347820667154946476, guid: 379b19093d4b87145a5ce5168af4c2ad, type: 3}
-  spawnInterval: 2
-  spawnTimer: 0
-  minY: -1
-  maxY: 3
-  minSpeed: 1.5
-  maxSpeed: 3
-  screenEdgeOffset: 0.5
-  mainCam: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::GridSpawnerPM
+  grid: {fileID: 0}
+  playerPrefab: {fileID: 3296329309632074788, guid: 01b9763030ac579499dbd853cb4470c4, type: 3}
+  playerSpawnCell: {x: 0, y: 0, z: 0}
+  ghostPrefab: {fileID: 808622313681173066, guid: 8595b89394793c34b81627c2e311ab84, type: 3}
+  ghostSpawnCells: []
+  pelletPrefab: {fileID: 250500706783361669, guid: af2a2b5e92a35e44e84f4966c7b90d59, type: 3}
+  pelletSpawnCells: []
