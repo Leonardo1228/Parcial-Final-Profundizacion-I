@@ -1,13 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AIPaddle : MonoBehaviour
 {
     public float speed = 6f;
-    public Transform ball;
 
     [Header("Muros")]
     public Transform superiorWall;
     public Transform inferiorWall;
+
+    private Ball ball;   // referencia al script Ball (no Tag)
+    private Transform ballTransform;
 
     private float upperLimit;
     private float lowerLimit;
@@ -26,24 +28,27 @@ public class AIPaddle : MonoBehaviour
 
     void Update()
     {
+        // 🔎 Busca la bola automáticamente si aún no existe referencia
         if (ball == null)
+        {
+            ball = FindAnyObjectByType<Ball>(); // NO usa tags
+            if (ball != null)
+                ballTransform = ball.transform;
+
             return;
+        }
 
         float deadZone = 0.1f;
-        float diff = ball.position.y - transform.position.y;
+        float diff = ballTransform.position.y - transform.position.y;
 
         if (Mathf.Abs(diff) < deadZone)
             return;
 
         float direction = Mathf.Sign(diff);
 
-        // Movimiento calculado
         float newY = transform.position.y + direction * speed * Time.deltaTime;
-
-        // Limita entre los muros
         newY = Mathf.Clamp(newY, lowerLimit, upperLimit);
 
-        // Aplica el movimiento sin alterar la l�gica
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 }

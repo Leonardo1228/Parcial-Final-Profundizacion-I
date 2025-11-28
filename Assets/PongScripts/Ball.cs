@@ -78,6 +78,26 @@ public class Ball : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+
+        // Si sale por la izquierda
+        if (viewPos.x < 0f)
+        {
+            GameManagerP.Instance.AIScoresPoint();
+            ResetBall();
+            return;
+        }
+
+        // Si sale por la derecha
+        if (viewPos.x > 1f)
+        {
+            GameManagerP.Instance.PlayerScoresPoint();
+            ResetBall();
+            return;
+        }
+    }
     public void ResetBall()
     {
         LaunchBall();
